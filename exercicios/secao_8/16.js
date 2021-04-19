@@ -20,4 +20,4 @@ function checar_ano_bissexto(ano){
     }    
 }
 
-console.log(checar_ano_bissexto(2024))
+console.log(checar_ano_bissexto(202))
