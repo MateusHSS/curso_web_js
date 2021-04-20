@@ -1,0 +1,53 @@
+<video id="meu_video" width="800" height="450" controls autoplay controlsList="nodownload">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+    Seu browser nao suporta a tag video
+</video>
+
+<div wm-progresso="meu_video" class="progresso">
+    <div></div>
+</div>
+
+<div>
+    <button wm-play="meu_video">Play</button>
+    <button wm-pause="meu_video">Pause</button>
+</div>
+
+<style>
+    .progresso {
+        height: 20px;
+        width: 500px;
+        border: solid 1px #444;
+        margin: 20px;
+    }
+
+    .progresso > div {
+        background-color: red;
+        color: #fff;
+        height: 100%;
+        text-align: right;
+        font-size: 14px;
+        width: 0%;
+    }
+</style>
+
+<script>
+    // document.getElementById('meu_video').onprogress = function() {
+    //     console.log('progress')
+    // }
+
+    document.querySelector('[wm-play]').onclick = function(){
+        document.getElementById(this.getAttribute("wm-play")).play()
+    }
+
+    document.querySelector('[wm-pause]').onclick = function(){
+        document.getElementById(this.getAttribute("wm-pause")).pause()
+    }
+
+    document.querySelector("video").ontimeupdate = function(){
+        document.querySelector('[wm-progresso] > div').style.textAlign = 'left'
+        document.querySelector('[wm-progresso] > div').style.height = '100%'
+        document.querySelector('[wm-progresso] > div').style.backgroundColor = 'red'
+        document.querySelector('[wm-progresso] > div').style.width = `${(this.currentTime / this.duration).toFixed(2) * 100}%`
+        console.log((this.currentTime / this.duration).toFixed(2) * 100 + '%')
+    }
+</script>
